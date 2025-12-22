@@ -2,7 +2,7 @@
 set -euo pipefail
 
 #Directories and stuff
-PROJECT_ROOT="$(cd -- "$(dirname -- "$BASH_SOURCE[0]")" && pwd)"
+PROJECT_ROOT="$(cd "$(dirname "$BASH_SOURCE[0]")" && pwd)"
 CONFIG_ROOT="$PROJECT_ROOT/configs"
 
 TEST="/Documents/TEST"
@@ -10,8 +10,8 @@ TEST="/Documents/TEST"
 QS_SRC="$CONFIG_ROOT/quickshell"
 HYPR_SRC="$CONFIG_ROOT/hyprland"
 
-QS_DST="$HOME$TEST/quickshell/ii"
-HYPR_DST="$HOME$TEST/hypr/hyprland"
+QS_DST="$HOME/.config/quickshell/ii"
+HYPR_DST="$HOME/.config/hypr/hyprland"
 
 BACKUP_ROOT="$HOME/plug-backup"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
