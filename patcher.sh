@@ -161,7 +161,7 @@ help() {
 Usage: ./patcher.sh <command>
 
 Commands:
-  apply     Backup and apply configs(Only what's needed)
+  apply     Backup and apply configs
   restore   Restore last backup
   help      Show this help message
 
