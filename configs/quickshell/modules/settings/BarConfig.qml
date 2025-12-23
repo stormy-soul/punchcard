@@ -113,7 +113,7 @@ ContentPage {
                         },
                         {
                             displayName: Translation.tr("Islands"),
-                            icon: "page_header",
+                            icon: "view_column",
                             value: 3
                         }
                     ]

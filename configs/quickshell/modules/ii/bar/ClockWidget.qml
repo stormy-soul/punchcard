@@ -8,13 +8,12 @@ Item {
     id: root
     property bool borderless: Config.options.bar.borderless
     property bool showDate: Config.options.bar.verbose
-    implicitWidth: rowLayout.implicitWidth
+    implicitWidth: rowLayout.implicitWidth + 10
     implicitHeight: Appearance.sizes.barHeight
 
     RowLayout {
         id: rowLayout
         anchors.centerIn: parent
-        spacing: 4
 
         StyledText {
             font.pixelSize: Appearance.font.pixelSize.small
@@ -23,17 +22,10 @@ Item {
         }
 
         StyledText {
-            visible: true //root.showDate
+            visible: root.showDate
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnLayer1
-            text: "•"
-        }
-
-        StyledText {
-            visible: true //root.showDate
-            font.pixelSize: Appearance.font.pixelSize.small
-            color: Appearance.colors.colOnLayer1
-            text: DateTime.shortDate
+            text: `•${DateTime.shortDate}`
         }
     }
 

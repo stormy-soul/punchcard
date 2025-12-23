@@ -71,6 +71,7 @@ ContentPage {
                 StyledImage {
                     id: wallpaperPreview
                     anchors.fill: parent
+                    anchors.rightMargin: 5
                     sourceSize.width: parent.implicitWidth
                     sourceSize.height: parent.implicitHeight
                     fillMode: Image.PreserveAspectCrop
@@ -294,7 +295,7 @@ ContentPage {
                         },
                         {
                             displayName: Translation.tr("Islands"),
-                            icon: "page_header",
+                            icon: "view_column",
                             value: 3
                         }
                     ]

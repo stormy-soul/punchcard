@@ -11,7 +11,7 @@ import qs.modules.common.widgets
 Scope {
     id: bar
     property bool showBarBackground: Config.options.bar.showBackground
-    property int barMargins: 10
+    property int barMargins: 5
 
     Variants {
         // For each monitor
@@ -68,9 +68,9 @@ Scope {
                     right: true
                 }
 
-                margins {
-                    left: (Config.options.bar.cornerStyle == 3 || Config.options.bar.cornerStyle == 1) ? barMargins : 0
-                    right: (Config.options.bar.cornerStyle == 3 || Config.options.bar.cornerStyle == 1) ? barMargins : (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.right) * -1
+                margins {  
+                    left: Config.options.bar.cornerStyle == 3 ? barMargins * 2 : (Config.options.bar.cornerStyle == 1 ? barMargins : 0)
+                    right: Config.options.bar.cornerStyle == 3 ? barMargins * 2 : (Config.options.bar.cornerStyle == 1 ? barMargins : (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.right) * -1)
                     top: Config.options.bar.cornerStyle === 3 ? barMargins / 2 : 0
                     bottom: (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.bottom) * -1
                 }

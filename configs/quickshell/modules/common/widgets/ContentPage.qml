@@ -5,7 +5,7 @@ import qs.modules.common.widgets
 
 StyledFlickable {
     id: root
-    property real baseWidth: 600
+    property real baseWidth: 750
     property bool forceWidth: false
     property real bottomContentPadding: 100
 

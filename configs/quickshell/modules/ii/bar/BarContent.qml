@@ -17,6 +17,7 @@ Item { // Bar content region
     property var brightnessMonitor: Brightness.getMonitorForScreen(screen)
     property real useShortenedForm: (Appearance.sizes.barHellaShortenScreenWidthThreshold >= screen?.width) ? 2 : (Appearance.sizes.barShortenScreenWidthThreshold >= screen?.width) ? 1 : 0
     readonly property int centerSideModuleWidth: (useShortenedForm == 2) ? Appearance.sizes.barCenterSideModuleWidthHellaShortened : (useShortenedForm == 1) ? Appearance.sizes.barCenterSideModuleWidthShortened : Appearance.sizes.barCenterSideModuleWidth
+    readonly property int barCenterSideModuleWidthHellaShortened: Appearance.sizes.barCenterSideModuleWidthHellaShortened
     property var customPillRounding: Appearance.rounding.small
 
     component VerticalBarSeparator: Rectangle {
@@ -46,8 +47,8 @@ Item { // Bar content region
         }
         color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
         radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
-        //border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
-        //border.color: Appearance.colors.colLayer0Border
+        border.width: Config.options.bar.cornerStyle === 1 ? 3 : 0
+        border.color: Appearance.colors.colLayer0Border
     }
 
     FocusedScrollMouseArea { // Left side | scroll to change brightness
@@ -123,26 +124,24 @@ Item { // Bar content region
         }
     }
 
-        Rectangle {
-            id: midBg
-            visible: Config.options.bar.cornerStyle === 3
-            anchors.fill: middleSection
-            color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
-            radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
-            border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
-            border.color: Appearance.colors.colLayer0Border
-        }
+    Rectangle {
+        id: midBg
+        visible: Config.options.bar.cornerStyle === 3
+        anchors.fill: middleSection
+        color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
+        border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+        border.color: Appearance.colors.colLayer0Border
+    }
 
-    Row { // Middle section
+    RowLayout { // Middle section
         id: middleSection
         anchors {
             top: parent.top
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        spacing: 4
-
-
+        spacing: 0
 
         BarGroup {
             id: leftCenterGroup
@@ -150,7 +149,7 @@ Item { // Bar content region
             implicitWidth: root.centerSideModuleWidth
 
             Item {
-                width: 10
+                width: 4
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }
@@ -159,80 +158,52 @@ Item { // Bar content region
                 showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
                 Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
-                //Layout.leftMargin: 10
+                Layout.preferredWidth: root.centerSideModuleWidth
             }
 
             Resources {
-                visible: false//Config.options.bar.verbose
+                visible: false //Config.options.bar.verbose
                 alwaysShowAllResources: root.useShortenedForm === 2
                 Layout.fillWidth: root.useShortenedForm === 2
             }
 
         }
 
-        VerticalBarSeparator {
-            visible: Config.options?.bar.borderless
-        }
-
         BarGroup {
             id: middleCenterGroup
             anchors.verticalCenter: parent.verticalCenter
             padding: workspacesWidget.widgetPadding
+            Layout.preferredWidth: workspacesWidget.implicitWidth
 
             Workspaces {
                 id: workspacesWidget
                 Layout.fillHeight: true
-                MouseArea {
-                    // Right-click to toggle overview
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton
-
-                    onPressed: event => {
-                        if (event.button === Qt.RightButton) {
-                            GlobalStates.overviewOpen = !GlobalStates.overviewOpen;
-                        }
-                    }
-                }
             }
         }
 
-        VerticalBarSeparator {
-            visible: Config.options?.bar.borderless
-        }
-
-        MouseArea {
-            id: rightCenterGroup
+        BarGroup {
+            id: rightCenterGroupContent
             anchors.verticalCenter: parent.verticalCenter
             implicitWidth: root.centerSideModuleWidth
-            implicitHeight: rightCenterGroupContent.implicitHeight
 
-            onPressed: {
-                GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen;
+            UtilButtons {
+                visible: false //(Config.options.bar.verbose && root.useShortenedForm === 0)
+                Layout.alignment: Qt.AlignVCenter
             }
 
-            BarGroup {
-                id: rightCenterGroupContent
-                //anchors.fill: parent
+            // Weather
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredWidth: root.barCenterSideModuleWidthHellaShortened
+                Layout.alignment: Qt.AlignVCenter
 
-
-
-                UtilButtons {
-                    visible: false //(Config.options.bar.verbose && root.useShortenedForm === 0)
-                    Layout.alignment: Qt.AlignVCenter
-                }
-
-                // Weather
                 Loader {
-                    //Layout.leftMargin: 4
+                    anchors.centerIn: parent
                     active: Config.options.bar.weather.enable
-
                     sourceComponent: BarGroup {
                         WeatherBar {}
                     }
                 }
-
-
-
             }
         }
     }
