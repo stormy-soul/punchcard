@@ -31,9 +31,8 @@ It's quite easy
 - Go into that cloned directory and run `./patcher.sh help`
 
 ## Screenshots
-<img width="1918" height="1078" alt="home" src="https://github.com/user-attachments/assets/e38cc73d-b601-4efb-801b-2ec8416c3a19" />
-<img width="1918" height="1078" alt="sidebar" src="https://github.com/user-attachments/assets/b062bcb2-c97b-4507-a795-acb9447faff3" />
-
+<img width="1918" height="1078" alt="desktop" src="https://github.com/user-attachments/assets/e8eef540-999b-4400-8c2a-2a6cc544a1f8" />
+<img width="1918" height="1078" alt="sidebar" src="https://github.com/user-attachments/assets/a6f962ed-59d7-4a0b-bd72-b5b332ebf6a1" />
 
 ## Usage
 ```bash
