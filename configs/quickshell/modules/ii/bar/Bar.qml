@@ -11,7 +11,7 @@ import qs.modules.common.widgets
 Scope {
     id: bar
     property bool showBarBackground: Config.options.bar.showBackground
-    property int barMargins: 5
+    property int barMargins: 10
 
     Variants {
         // For each monitor
@@ -53,7 +53,7 @@ Scope {
                 property bool mustShow: hoverRegion.containsMouse || superShow
                 exclusionMode: ExclusionMode.Ignore
                 exclusiveZone: (Config?.options.bar.autoHide.enable && (!mustShow || !Config?.options.bar.autoHide.pushWindows)) ? 0 :
-                    Appearance.sizes.baseBarHeight + (Config.options.bar.cornerStyle === 1 ? Appearance.sizes.hyprlandGapsOut : 0)
+                    Appearance.sizes.baseBarHeight + ((Config.options.bar.cornerStyle === 3 || Config.options.bar.cornerStyle === 1) ? Appearance.sizes.hyprlandGapsOut : 0)
                 WlrLayershell.namespace: "quickshell:bar"
                 implicitHeight: Appearance.sizes.barHeight + Appearance.rounding.screenRounding
                 mask: Region {
@@ -69,8 +69,9 @@ Scope {
                 }
 
                 margins {
-                    left: Config.options.bar.cornerStyle == 1 ? barMargins : 0
-                    right: Config.options.bar.cornerStyle == 1 ? barMargins : (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.right) * -1
+                    left: (Config.options.bar.cornerStyle == 3 || Config.options.bar.cornerStyle == 1) ? barMargins : 0
+                    right: (Config.options.bar.cornerStyle == 3 || Config.options.bar.cornerStyle == 1) ? barMargins : (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.right) * -1
+                    top: Config.options.bar.cornerStyle === 3 ? barMargins / 2 : 0
                     bottom: (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.bottom) * -1
                 }
 

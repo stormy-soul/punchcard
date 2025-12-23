@@ -1,4 +1,5 @@
 import qs.modules.ii.bar.weather
+import qs.modules.ii.mediaControls
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -16,6 +17,7 @@ Item { // Bar content region
     property var brightnessMonitor: Brightness.getMonitorForScreen(screen)
     property real useShortenedForm: (Appearance.sizes.barHellaShortenScreenWidthThreshold >= screen?.width) ? 2 : (Appearance.sizes.barShortenScreenWidthThreshold >= screen?.width) ? 1 : 0
     readonly property int centerSideModuleWidth: (useShortenedForm == 2) ? Appearance.sizes.barCenterSideModuleWidthHellaShortened : (useShortenedForm == 1) ? Appearance.sizes.barCenterSideModuleWidthShortened : Appearance.sizes.barCenterSideModuleWidth
+    property var customPillRounding: Appearance.rounding.small
 
     component VerticalBarSeparator: Rectangle {
         Layout.topMargin: Appearance.sizes.baseBarHeight / 3
@@ -37,14 +39,15 @@ Item { // Bar content region
     // Background
     Rectangle {
         id: barBackground
+        visible: Config.options.bar.cornerStyle !== 3
         anchors {
             fill: parent
             margins: Config.options.bar.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
         }
         color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
         radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
-        border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
-        border.color: Appearance.colors.colLayer0Border
+        //border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
+        //border.color: Appearance.colors.colLayer0Border
     }
 
     FocusedScrollMouseArea { // Left side | scroll to change brightness
@@ -67,6 +70,16 @@ Item { // Bar content region
         //        GlobalStates.sidebarLeftOpen = !GlobalStates.sidebarLeftOpen;
         //}
 
+        Rectangle {
+            id: leftBg
+            visible: Config.options.bar.cornerStyle === 3
+            anchors.fill: leftSectionRowLayout
+            color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+            radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
+            border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+            border.color: Appearance.colors.colLayer0Border
+        }
+
         // Visual content
         ScrollHint {
             reveal: barLeftSideMouseArea.hovered
@@ -75,11 +88,13 @@ Item { // Bar content region
             side: "left"
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: -Appearance.sizes.hyprlandGapsOut * 0.3
         }
 
         RowLayout {
             id: leftSectionRowLayout
-            anchors.fill: parent
+            //anchors.fill: parent
+            anchors.left: parent.left
             spacing: 10
 
             LeftSidebarButton { // Left sidebar button
@@ -100,9 +115,23 @@ Item { // Bar content region
                 Layout.fillWidth: true
             }
 
-
+            Item {
+                width: 5
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
         }
     }
+
+        Rectangle {
+            id: midBg
+            visible: Config.options.bar.cornerStyle === 3
+            anchors.fill: middleSection
+            color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+            radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
+            border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+            border.color: Appearance.colors.colLayer0Border
+        }
 
     Row { // Middle section
         id: middleSection
@@ -113,20 +142,28 @@ Item { // Bar content region
         }
         spacing: 4
 
+
+
         BarGroup {
             id: leftCenterGroup
             anchors.verticalCenter: parent.verticalCenter
             implicitWidth: root.centerSideModuleWidth
 
+            Item {
+                width: 10
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
             ClockWidget {
                 showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
                 Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
-                // Layout.rightMargin: 4
+                //Layout.leftMargin: 10
             }
 
             Resources {
-                visible: Config.options.bar.verbose
+                visible: false//Config.options.bar.verbose
                 alwaysShowAllResources: root.useShortenedForm === 2
                 Layout.fillWidth: root.useShortenedForm === 2
             }
@@ -221,6 +258,16 @@ Item { // Bar content region
             }
         }
 
+        Rectangle {
+            id: rightBg
+            visible: Config.options.bar.cornerStyle === 3
+            anchors.fill: rightSectionRowLayout
+            color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+            radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
+            border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+            border.color: Appearance.colors.colLayer0Border
+        }
+
         // Visual content
         ScrollHint {
             reveal: barRightSideMouseArea.hovered
@@ -228,15 +275,18 @@ Item { // Bar content region
             tooltipText: Translation.tr("Scroll to change volume")
             side: "right"
             anchors.right: parent.right
+            anchors.rightMargin: -Appearance.sizes.hyprlandGapsOut * 0.3
             anchors.verticalCenter: parent.verticalCenter
         }
         
 
         RowLayout {
             id: rightSectionRowLayout
-            anchors.fill: parent
+            //anchors.fill: parent
+            anchors.right: parent.right
             spacing: 5
             layoutDirection: Qt.RightToLeft
+            Layout.alignment: Qt.AlignRight
 
             BatteryIndicator {
                 visible: (root.useShortenedForm < 2 && Battery.available)
