@@ -77,7 +77,7 @@ Item { // Bar content region
             anchors.fill: leftSectionRowLayout
             color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
             radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
-            border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+            border.width: Config.options.bar.borderless ? 0 : (Config.options.bar.cornerStyle === 3 ? 3 : 0)
             border.color: Appearance.colors.colLayer0Border
         }
 
@@ -131,7 +131,7 @@ Item { // Bar content region
         anchors.fill: middleSection
         color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
         radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
-        border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+        border.width: Config.options.bar.borderless ? 0 : (Config.options.bar.cornerStyle === 3 ? 3 : 0)
         border.color: Appearance.colors.colLayer0Border
     }
 
@@ -236,7 +236,7 @@ Item { // Bar content region
             anchors.fill: rightSectionRowLayout
             color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
             radius: Config.options.bar.cornerStyle === 3 ? root.customPillRounding : 0
-            border.width: Config.options.bar.cornerStyle === 3 ? 3 : 0
+            border.width: Config.options.bar.borderless ? 0 : (Config.options.bar.cornerStyle === 3 ? 3 : 0)
             border.color: Appearance.colors.colLayer0Border
         }
 
