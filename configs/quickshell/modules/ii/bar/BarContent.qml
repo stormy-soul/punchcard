@@ -94,6 +94,7 @@ Item { // Bar content region
 
         RowLayout {
             id: leftSectionRowLayout
+            width: Math.min(implicitWidth, ((screen?.width / 2) - (middleSection.width / 2)) - (spacing * 2))
             //anchors.fill: parent
             anchors.left: parent.left
             spacing: 10
@@ -255,6 +256,7 @@ Item { // Bar content region
             id: rightSectionRowLayout
             //anchors.fill: parent
             anchors.right: parent.right
+            width: Math.min(implicitWidth, ((screen?.width / 2) - (middleSection.width / 2)) - (spacing * 4))
             spacing: 5
             layoutDirection: Qt.RightToLeft
             Layout.alignment: Qt.AlignRight

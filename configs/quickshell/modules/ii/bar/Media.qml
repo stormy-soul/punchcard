@@ -45,7 +45,7 @@ Item {
     RowLayout { // Real content
         id: rowLayout
 
-        spacing: 4
+        spacing: 8
         anchors.fill: parent
 
         ClippedFilledCircularProgress {
@@ -74,14 +74,35 @@ Item {
             }
         }
 
+        CustomIcon {
+            visible: !activePlayer?.isPlaying
+            anchors {
+                left: parent.left
+                top: parent.top
+                bottom: parent.bottom
+                verticalCenter: parent.verticalCenter
+            }
+            side: "right"
+            push: 0
+            width: 21
+            height: 21
+            source: "fluent/emoji-ghost-blank-2"
+            colorize: true
+            color: Appearance.colors.colOnLayer0
+        }
+
         StyledText {
-            //visible: Config.options.bar.verbose
-            anchors.centerIn: parent
-            width: Config.options.bar.verbose ? rowLayout.width - (CircularProgress.size + rowLayout.spacing * 2) : rowLayout.width
+            visible: activePlayer?.isPlaying
+            id: trackName
+            anchors {
+                right: parent.right
+                top: parent.top
+                bottom: parent.bottom
+            }
+            width: Config.options.bar.verbose ? rowLayout.width - (icon.size + rowLayout.spacing * 2) : rowLayout.width
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true // Ensures the text takes up available space
             Layout.rightMargin: rowLayout.spacing
-            //horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight // Truncates the text on the right
             color: Appearance.colors.colOnLayer1
             text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}` //${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}
