@@ -12,10 +12,10 @@ https://github.com/stormy-soul/punchcard                  v1.0
 </pre>
 </div>
 
-`punchcard` is a script that copies over my end4 tweaks onto your device. it's not something magical, it literally just overwrites necessary files with what I provide. So if you want the dots themselves, dig around the `configs/` directory and copy over what you want!
+`punchcard` is a script that copies over my end4 tweaks onto your device. it's not something magical, it literally just overwrites necessary files with what I provide. So if you want the configs themselves, dig around the `configs/` directory and copy over what you want!
 
 ## What it is
-A thingamajig that just cp -a my_stuff your_stuff. But it does keep a backup over at `~/card-backup`, so if you ever wanna restore stuff, you can.It will also overwrite some hyprland configs, namely `general.conf` and `rules.conf` so your setup can look as shown in the screenshots, blur and all!
+A thingamajig that just cp -a my_stuff your_stuff. And it does keep a backup over at `~/punchcard`, so if you ever wanna restore stuff, you can. It will also overwrite some hyprland configs, namely `general.conf` and `rules.conf` plus the illogical-impulse config so your setup can look as shown in the screenshots, blur and all!
 
 ## Requirements
 The script assumes you have illogical-impulse shell installed, plus:
