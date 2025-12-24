@@ -270,14 +270,15 @@ Item { // Bar content region
             RippleButton { // Right sidebar button
                 id: rightSidebarButton
 
-                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 //Layout.rightMargin: Appearance.rounding.screenRounding
                 Layout.fillWidth: false
+                Layout.rightMargin: indicatorsRowLayout.realSpacing / 3
 
-                implicitWidth: indicatorsRowLayout.implicitWidth + 10 * 2
-                implicitHeight: indicatorsRowLayout.implicitHeight + 5 * 2
+                implicitWidth: indicatorsRowLayout.implicitWidth + indicatorsRowLayout.realSpacing
+                implicitHeight: Config.options.bar.cornerStyle === 3 ? indicatorsRowLayout.implicitHeight + 2 : indicatorsRowLayout.implicitHeight + 5 * 2
 
-                buttonRadius: Appearance.rounding.full
+                buttonRadius: Config.options.bar.cornerStyle === 3 ? Appearance.rounding.verysmall : Appearance.rounding.full
                 colBackground: barRightSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
                 colBackgroundHover: Appearance.colors.colLayer1Hover
                 colRipple: Appearance.colors.colLayer1Active
