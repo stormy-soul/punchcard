@@ -132,7 +132,7 @@ Item {
                 topRightRadius: root.vertical ? radiusPrev : radiusNext
                 bottomRightRadius: radiusNext
                 
-                color: ColorUtils.transparentize(Appearance.m3colors.m3secondaryContainer, 0.4)
+                color: ColorUtils.transparentize(Appearance.colors.colLayer0, 0.5)
                 opacity: (workspaceOccupied[index] && !(!activeWindow?.activated && monitor?.activeWorkspace?.id === index+1)) ? 1 : 0
 
                 Behavior on opacity {
