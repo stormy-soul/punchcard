@@ -362,10 +362,10 @@ Singleton {
     sizes: QtObject {
         property real baseBarHeight: 40
         property real barHeight: Config.options.bar.cornerStyle === 1 ? 
-            (baseBarHeight + root.sizes.hyprlandGapsOut * 2) : baseBarHeight
-        property real barCenterSideModuleWidth: Config.options?.bar.verbose ? 360 : 140
-        property real barCenterSideModuleWidthShortened: 280
-        property real barCenterSideModuleWidthHellaShortened: 190
+            (baseBarHeight + root.sizes.hyprlandGapsOut * 2) : (Config.options.bar.cornerStyle === 3 ? baseBarHeight - baseBarHeight / 10: baseBarHeight)
+        property real barCenterSideModuleWidth: Config.options?.bar.verbose ? 360 : 120
+        property real barCenterSideModuleWidthShortened: 240
+        property real barCenterSideModuleWidthHellaShortened: 100
         property real barShortenScreenWidthThreshold: 1200 // Shorten if screen width is at most this value
         property real barHellaShortenScreenWidthThreshold: 1000 // Shorten even more...
         property real elevationMargin: 10

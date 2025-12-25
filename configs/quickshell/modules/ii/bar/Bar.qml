@@ -72,7 +72,7 @@ Scope {
                     left: Config.options.bar.cornerStyle == 3 ? barMargins * 2 : (Config.options.bar.cornerStyle == 1 ? barMargins : 0)
                     right: Config.options.bar.cornerStyle == 3 ? barMargins * 2 : (Config.options.bar.cornerStyle == 1 ? barMargins : (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.right) * -1)
                     top: Config.options.bar.cornerStyle === 3 ? barMargins * 2 : 0
-                    bottom: (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.bottom) * -1
+                    bottom: Config.options.bar.cornerStyle === 3 ? barMargins * 4 : (Config.options.interactions.deadPixelWorkaround.enable && barRoot.anchors.bottom) * -1
                 }
 
                 MouseArea  {

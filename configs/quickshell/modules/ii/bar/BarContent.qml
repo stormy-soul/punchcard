@@ -276,7 +276,7 @@ Item { // Bar content region
                 Layout.rightMargin: indicatorsRowLayout.realSpacing / 3
 
                 implicitWidth: indicatorsRowLayout.implicitWidth + indicatorsRowLayout.realSpacing
-                implicitHeight: Config.options.bar.cornerStyle === 3 ? indicatorsRowLayout.implicitHeight + 2 : indicatorsRowLayout.implicitHeight + 5 * 2
+                implicitHeight: Config.options.bar.cornerStyle === 3 ? indicatorsRowLayout.implicitHeight + 5 : indicatorsRowLayout.implicitHeight + 5 * 2
 
                 buttonRadius: Config.options.bar.cornerStyle === 3 ? Appearance.rounding.verysmall : Appearance.rounding.full
                 colBackground: barRightSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
