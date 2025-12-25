@@ -31,8 +31,9 @@ It's quite easy
 - Go into that cloned directory and run `./patcher.sh help`
 
 ## Screenshots
-<img width="1918" height="1078" alt="desktop" src="https://github.com/user-attachments/assets/e8eef540-999b-4400-8c2a-2a6cc544a1f8" />
-<img width="1918" height="1078" alt="sidebar" src="https://github.com/user-attachments/assets/a6f962ed-59d7-4a0b-bd72-b5b332ebf6a1" />
+<img width="1920" height="1080" alt="desktop" src="https://github.com/user-attachments/assets/3375f923-f30f-46d6-b0f0-fea1d7e3bfab" />
+<img width="1920" height="1080" alt="sidebar" src="https://github.com/user-attachments/assets/edb27054-e67d-4066-b269-c5635cb2df7e" />
+
 
 ## Usage
 ```bash
@@ -43,3 +44,6 @@ Commands:
   restore   Restore last backup
   help      Show this help message
 ```
+
+## Wallpaper
+[Christmas 2350](https://www.artstation.com/artwork/W28Yvv) by Stefan Koidl
